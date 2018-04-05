@@ -1,0 +1,16 @@
+{
+  "name": "pie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "mustache": "^2.3.0",
+    "ramda": "^0.25.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node index.spec.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
