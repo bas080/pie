@@ -2,14 +2,18 @@
   "name": "pie",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "dependencies": {
+    "flow-bin": "^0.69.0",
+    "flow-remove-types": "^1.2.3",
     "mustache": "^2.3.0",
     "ramda": "^0.25.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "node index.spec.js"
+    "build": "flow-remove-types ./src/ -d ./dist/",
+    "pretest": "npm run build",
+    "test": "node dist/index.spec.js"
   },
   "author": "",
   "license": "ISC"

@@ -1,19 +1,49 @@
 'use strict'
 
-const {money, hrMoney, divide, sum, subtract} = require('./money')
+// @flow
+import type {Money} from './money'
 
-function user(def) {
+const {money, hrMoney, divide, sum, subtract, isMoney} = require('./money')
+
+type FormattedTransaction = {
+  description?: string,
+  amount: string,
+  from: User,
+  to: User,
+}
+
+type User = {
+  name: string,
+}
+
+type Transaction = {
+  description?: string,
+  amount: Money,
+  from: User,
+  to: User,
+}
+
+function user(def: Object): User {
   return def
 }
 
-function transaction(def) {
-  return {
-    ...def,
+function transaction(def: {
+  amount: number | Money,
+  from: User,
+  to: User,
+  description?: string,
+}): Transaction {
+  const result = {
+    from: def.from,
+    to: def.to,
     amount: money(def.amount),
+    description: def.description,
   }
+
+  return result
 }
 
-function balance(transactions) {
+function balance(transactions: Transaction[]): [User, string][] {
   const balance = transactions.reduce((balance, transaction) => {
     const from = balance.get(transaction.from) || money(0)
 
@@ -29,7 +59,7 @@ function balance(transactions) {
   return Array.from(balance).map(([key, value]) => [key, hrMoney(value)])
 }
 
-function compact(transactions) {
+function compact(transactions: Transaction[]): Transaction[] {
   return transactions.filter(transaction => {
     return !transactions.find(
       t =>
@@ -40,7 +70,7 @@ function compact(transactions) {
   })
 }
 
-function split(users, paid) {
+function split(users: User[], paid: Transaction): Transaction[] {
   const {amount, from, to} = paid
   const split = divide(amount, money(users.length))
 
@@ -57,14 +87,22 @@ function split(users, paid) {
   ]
 }
 
-function format(transactions) {
-  return transactions.map(tr => ({
-    ...tr,
-    amount: hrMoney(tr.amount),
-  }))
+function formatTransaction(transaction: Transaction): FormattedTransaction {
+  const result = {
+    amount: hrMoney(transaction.amount),
+    from: transaction.from,
+    to: transaction.to,
+    description: transaction.description,
+  }
+
+  return result
 }
 
-function print(transactions) {
+function format(transactions: Transaction[]): FormattedTransaction[] {
+  return transactions.map(formatTransaction)
+}
+
+function print(transactions: Transaction[]): void {
   // eslint-disable-next-line no-console
   console.log(
     JSON.stringify(

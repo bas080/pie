@@ -1,5 +1,7 @@
 'use strict'
 
+// @flow
+
 const {balance, split, user, transaction, format, compact} = require('./index')
 const assert = require('assert')
 
@@ -23,15 +25,15 @@ const jam = transaction({
 })
 
 assert.deepEqual(format(split(users, pines)), [
-  {from: a, to: z, amount: 33},
-  {from: z, to: a, amount: 33},
-  {from: a, to: b, amount: 11},
-  {from: a, to: c, amount: 11},
+  {from: a, to: z, amount: 33, description: undefined},
+  {from: z, to: a, amount: 33, description: undefined},
+  {from: a, to: b, amount: 11, description: undefined},
+  {from: a, to: c, amount: 11, description: undefined},
 ])
 
 assert.deepEqual(format(compact(split(users, pines))), [
-  {from: a, to: b, amount: 11},
-  {from: a, to: c, amount: 11},
+  {from: a, to: b, amount: 11, description: undefined},
+  {from: a, to: c, amount: 11, description: undefined},
 ])
 
 assert.deepEqual(balance(split(users, pines)), [
