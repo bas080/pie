@@ -1,7 +1,5 @@
 'use strict'
 
-// @flow
-
 const {balance, split, user, transaction, format, compact} = require('./index')
 const assert = require('assert')
 

@@ -1,4 +1,4 @@
-const {transaction, user, split, print} = require('../dist/index')
+const {transaction, user, split, print} = require('../../dist/index')
 
 const john = user({name: 'John'})
 const jane = user({name: 'Jane'})

@@ -1,7 +1,9 @@
 [ignore]
+.*/dist
+.*/node_modules
+.*/doc
 
 [include]
-./src/
 
 [libs]
 

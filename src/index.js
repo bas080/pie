@@ -1,6 +1,5 @@
 'use strict'
 
-// @flow
 import type {Money} from './money'
 
 const {money, hrMoney, divide, sum, subtract, isMoney} = require('./money')

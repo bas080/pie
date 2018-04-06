@@ -1,6 +1,8 @@
 'use strict'
 
-// @flow
+type Ratio = [number, number]
+
+export type Money = Ratio
 
 function numer(a: Ratio): number {
   return a[0]
@@ -9,9 +11,6 @@ function numer(a: Ratio): number {
 function denom(a: Ratio): number {
   return a[1]
 }
-
-type Ratio = [number, number]
-export type Money = Ratio
 
 function makeRatio(numer: number, denom: number): Ratio {
   if (isNaN(numer))

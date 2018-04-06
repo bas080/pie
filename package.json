@@ -11,9 +11,14 @@
   },
   "devDependencies": {},
   "scripts": {
-    "build": "flow-remove-types ./src/ -d ./dist/",
+    "build": "flow-remove-types -a ./src/ -d ./dist/",
+    "prepare": "npm run build",
+    "typecheck": "flow check --all",
+    "prepublishOnly": "npm test",
+    "docs": "npm test && mash doc/README.md > ./README.md",
+    "test-examples": "node doc/example/*.js > /dev/null",
     "pretest": "npm run build",
-    "test": "node dist/index.spec.js"
+    "test": "node dist/index.spec.js && npm run typecheck && npm run test-examples"
   },
   "author": "",
   "license": "ISC"
