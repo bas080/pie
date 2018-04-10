@@ -3,9 +3,7 @@
 Create a file and require the following functions.
 
 ```js
-// ./example/radio.js
-
-require ./doc/example/radio.js
+require ./src/radio.example.js
 ```
 
 This is how you would run this file.
@@ -21,3 +19,17 @@ stdout.
 require ./doc/example/radio.output.json
 ```
 
+I like to generate something more user friendly. To do this I use mustache's
+template rendering.
+
+```bash
+require ./doc/example/report.sh
+```
+
+By running this, the json that is produced is piped to the mustache command.
+It's output is written to a file named `report.txt` which contains the
+following.
+
+```txt
+require ./doc/example/report.txt
+```

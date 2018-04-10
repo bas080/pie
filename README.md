@@ -9,9 +9,7 @@ Currently pie has no client. I personally use it as a command line tool
 Create a file and require the following functions.
 
 ```js
-// ./example/radio.js
-
-const {transaction, user, split, print} = require('../../dist/index')
+const {transaction, user, split, print} = require('./index')
 
 const john = user({name: 'John'})
 const jane = user({name: 'Jane'})
@@ -33,7 +31,7 @@ print(transactions)
 This is how you would run this file.
 
 ```bash
-node ./doc/example/radio.js
+node ./dist/radio.example.js
 ```
 
 The result of running this script is a json string that is written to the
@@ -76,6 +74,30 @@ stdout.
 }
 ```
 
+I like to generate something more user friendly. To do this I use mustache's
+template rendering.
+
+```bash
+npm install mustache -g
+
+node ./dist/radio.example.js  | mustache - ./doc/example/report.mustache > ./doc/example/report.txt
+```
+
+By running this, the json that is produced is piped to the mustache command.
+It's output is written to a file named `report.txt` which contains the
+following.
+
+```txt
+# Contributors
+
+John: 10.00
+RadioPalace: 0.00
+Jane: -10.00
+
+# Transactions
+
+10.00	split Radio	 John > Jane
+```
 # Roadmap
 
 ## Use flow's libdef feature

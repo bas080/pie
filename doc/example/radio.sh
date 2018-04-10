@@ -1,1 +1,1 @@
-node ./doc/example/radio.js
+node ./dist/radio.example.js

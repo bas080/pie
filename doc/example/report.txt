@@ -1,0 +1,9 @@
+# Contributors
+
+John: 10.00
+RadioPalace: 0.00
+Jane: -10.00
+
+# Transactions
+
+10.00	split Radio	 John > Jane
