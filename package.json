@@ -9,7 +9,9 @@
     "mustache": "^2.3.0",
     "ramda": "^0.25.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "pre-commit": "^1.2.2"
+  },
   "scripts": {
     "build": "flow-remove-types -a ./src/ -d ./dist/",
     "prepare": "npm run build",
