@@ -58,17 +58,6 @@ function balance(transactions: Transaction[]): [User, string][] {
   return Array.from(balance).map(([key, value]) => [key, hrMoney(value)])
 }
 
-function compact(transactions: Transaction[]): Transaction[] {
-  return transactions.filter(transaction => {
-    return !transactions.find(
-      t =>
-        transaction.from === t.to &&
-        transaction.to === t.from &&
-        transaction.amount === t.amount
-    )
-  })
-}
-
 function split(users: User[], paid: Transaction): Transaction[] {
   const {amount, from, to} = paid
   const split = divide(amount, money(users.length))
@@ -106,7 +95,7 @@ function print(transactions: Transaction[]): void {
   console.log(
     JSON.stringify(
       {
-        transactions: format(compact(transactions)),
+        transactions: format(transactions),
         balance: balance(transactions),
       },
       null,
@@ -121,6 +110,5 @@ module.exports = {
   user,
   balance,
   format,
-  compact,
   print,
 }

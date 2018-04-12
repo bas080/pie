@@ -13,9 +13,6 @@ function denom(a: Ratio): number {
 }
 
 function makeRatio(numer: number, denom: number): Ratio {
-  if (isNaN(numer))
-    throw new TypeError('whaaaa')
-
   return [numer, denom]
 }
 
@@ -55,7 +52,11 @@ function money(amount: number|Money): Money {
     return makeRatio(amount * 100, 100)
   }
 
-  return amount
+  if (isMoney(amount)) {
+    return amount
+  }
+
+  throw new TypeError(`cannot be cast to money`)
 }
 
 function toNumber(ratio: Ratio): number {

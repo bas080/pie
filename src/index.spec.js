@@ -1,7 +1,7 @@
 'use strict'
 
-const {balance, split, user, transaction, format, compact} = require('./index')
-const tap = require('tap')
+const {balance, split, user, transaction, format} = require('./index')
+const {test} = require('tap')
 
 const a = user({name: 'A'})
 const b = user({name: 'B'})
@@ -22,43 +22,32 @@ const jam = transaction({
   amount: 3,
 })
 
-tap.test(t => {
-  t.deepEqual(format(split(users, pines)), [
-    {from: a, to: z, amount: 33, description: undefined},
-    {from: z, to: a, amount: 33, description: undefined},
-    {from: a, to: b, amount: 11, description: undefined},
-    {from: a, to: c, amount: 11, description: undefined},
-  ])
+test(t => {
+  t.matchSnapshot(format(split(users, pines)))
 
   t.end()
 })
 
-tap.test(t => {
-  t.deepEqual(format(compact(split(users, pines))), [
-    {from: a, to: b, amount: 11, description: undefined},
-    {from: a, to: c, amount: 11, description: undefined},
-  ])
+test(t => {
+  t.matchSnapshot(balance(split(users, pines)))
 
   t.end()
 })
 
-tap.test(t => {
-  t.deepEqual(balance(split(users, pines)), [
-    [a, 22],
-    [z, 0],
-    [b, -11],
-    [c, -11],
-  ])
+test(t => {
+  t.matchSnapshot(balance(split(users, jam)))
 
   t.end()
 })
 
-tap.test(t => {
-  t.deepEqual(balance(split(users, jam)), [
-    [a, 2],
-    [b, -1],
-    [c, -1]
-  ])
+test(t => {
+  t.matchSnapshot(split([a, b],
+    transaction({
+      description: 'banana split',
+      from: a,
+      to: a,
+      amount: 2
+    })))
 
   t.end()
 })

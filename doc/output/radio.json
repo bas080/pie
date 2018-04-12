@@ -1,0 +1,54 @@
+{
+  "transactions": [
+    {
+      "amount": "20.00",
+      "from": {
+        "name": "John"
+      },
+      "to": {
+        "name": "RadioPalace"
+      },
+      "description": "Radio"
+    },
+    {
+      "amount": "20.00",
+      "from": {
+        "name": "RadioPalace"
+      },
+      "to": {
+        "name": "John"
+      },
+      "description": "split Radio"
+    },
+    {
+      "amount": "10.00",
+      "from": {
+        "name": "John"
+      },
+      "to": {
+        "name": "Jane"
+      },
+      "description": "split Radio"
+    }
+  ],
+  "balance": [
+    [
+      {
+        "name": "John"
+      },
+      "10.00"
+    ],
+    [
+      {
+        "name": "RadioPalace"
+      },
+      "0.00"
+    ],
+    [
+      {
+        "name": "Jane"
+      },
+      "-10.00"
+    ]
+  ]
+}
